@@ -1,0 +1,11 @@
+
+.env
+.env.*
+
+
+.git
+.gitignore
+
+
+*.log
+.DS_Store
