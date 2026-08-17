@@ -1,0 +1,320 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "dns": {
+    "servers": ["1.1.1.1", "223.5.5.5", "8.8.8.8"],
+    "queryStrategy": "UseIP",
+    "disableCache": false,
+    "disableFallback": false,
+    "hosts": {
+      "www.cloudflare.com": "127.0.0.1",
+      "dns.alidns.com": "127.0.0.1",
+      "dns.google.com": "127.0.0.1"
+    }
+  },
+  "inbounds": [
+    {
+      "port": 10001,
+      "listen": "::",
+      "protocol": "trojan",
+      "tag": "trojan-ws",
+      "settings": {
+        "clients": [{"password": "Cxlvin777"}]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {"path": "/CxlvinTRWS"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 10002,
+      "listen": "::",
+      "protocol": "vless",
+      "tag": "vless-ws",
+      "settings": {
+        "clients": [{"id": "cxlvin777"}],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {"path": "/CxlvinVlWS"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 10003,
+      "listen": "::",
+      "protocol": "shadowsocks",
+      "tag": "shadowsocks-ws",
+      "settings": {
+        "clients": [{"password": "Cxlvin777", "method": "chacha20-ietf-poly1305"}]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {"path": "/CxlvinSSWS"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 10004,
+      "listen": "::",
+      "protocol": "vmess",
+      "tag": "vmess-ws",
+      "settings": {
+        "clients": [{"id": "cxlvin777", "alterId": 0, "security": "auto"}]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {"path": "/CxlvinVMWS"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 11001,
+      "listen": "::",
+      "protocol": "trojan",
+      "tag": "trojan-hu",
+      "settings": {"clients": [{"password": "Cxlvin777"}]},
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {"path": "/CxlvinTRHU"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls", "fakedns"]}
+    },
+    {
+      "port": 11002,
+      "listen": "::",
+      "protocol": "vless",
+      "tag": "vless-hu",
+      "settings": {
+        "clients": [{"id": "cxlvin777"}],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {"path": "/CxlvinVlHU"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 11003,
+      "listen": "::",
+      "protocol": "shadowsocks",
+      "tag": "shadowsocks-hu",
+      "settings": {
+        "clients": [{"password": "Cxlvin777", "method": "chacha20-ietf-poly1305"}]
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {"path": "/CxlvinSSHU"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 11004,
+      "listen": "::",
+      "protocol": "vmess",
+      "tag": "vmess-hu",
+      "settings": {
+        "clients": [{"id": "cxlvin777", "alterId": 0, "security": "auto"}]
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {"path": "/CxlvinVMHU"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 10010,
+      "listen": "::",
+      "protocol": "trojan",
+      "tag": "trojan-xh",
+      "settings": {"clients": [{"password": "Cxlvin777"}]},
+      "streamSettings": {
+        "network": "xhttp",
+        "xhttpSettings": {"path": "/CxlvinTRXH", "mode": "auto"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 10009,
+      "listen": "::",
+      "protocol": "vless",
+      "tag": "vless-xh",
+      "settings": {
+        "clients": [{"id": "cxlvin777"}],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "xhttpSettings": {"path": "/CxlvinVlXH", "mode": "auto"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 10012,
+      "listen": "::",
+      "protocol": "shadowsocks",
+      "tag": "shadowsocks-xh",
+      "settings": {
+        "clients": [{"password": "Cxlvin777", "method": "chacha20-ietf-poly1305"}]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "xhttpSettings": {"path": "/CxlvinSSXH", "mode": "auto"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    },
+    {
+      "port": 10011,
+      "listen": "::",
+      "protocol": "vmess",
+      "tag": "vmess-xh",
+      "settings": {
+        "clients": [{"id": "cxlvin777", "alterId": 0, "security": "auto"}]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "xhttpSettings": {"path": "/CxlvinVMXH", "mode": "auto"},
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      },
+      "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct",
+      "settings": {"domainStrategy": "AsIs"},
+      "streamSettings": {
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpKeepAliveCount": 3,
+          "tcpQuickAck": true,
+          "tcpcongestion": "bbr"
+        }
+      }
+    },
+    {"protocol": "blackhole", "tag": "block"}
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "inboundTag": ["trojan-ws","vless-ws","shadowsocks-ws","vmess-ws","trojan-hu","vless-hu","shadowsocks-hu","vmess-hu","trojan-xh","vless-xh","shadowsocks-xh","vmess-xh"],
+        "outboundTag": "direct"
+      }
+    ]
+  }
+}
