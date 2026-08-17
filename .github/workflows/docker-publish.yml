@@ -22,6 +22,7 @@ jobs:
           context: .
           push: true
           tags: ytrew777/multiplexer:latest
+          pull: true       
+          no-cache: true   
         env:
-          
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
