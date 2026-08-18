@@ -1,7 +1,3 @@
-# Cxlvin 12-in-1 Xray Multi-Protocol Server
-# SSH WS+TLS | Xray: VLESS/Trojan/Shadowsocks/VMess
-# SNI: firebase-settings.crashlytics.com
-
 # Stage 1: Xray Binary
 FROM alpine:3.20 AS xray-bin
 RUN apk add --no-cache curl unzip
@@ -33,8 +29,8 @@ RUN apk add --no-cache \
     ca-certificates bash curl tzdata wget openssh supervisor procps \
  && rm -rf /var/cache/apk/*
 
-# Timezone — Asia/Manila (PH)
-ENV TZ=Asia/Manila PORT=80
+# GCP Cloud Run uses PORT=8080 — SET EXACTLY
+ENV TZ=Asia/Manila PORT=8080
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Copy pre-built binaries
@@ -69,12 +65,12 @@ RUN mkdir -p /run/sshd /etc/ssh && \
     sed -i 's/^#UsePAM.*/UsePAM no/' /etc/ssh/sshd_config && \
     adduser -D -h /home/cxlvin -s /bin/bash cxlvin
 
-# Ports
-EXPOSE 80 443
+# GCP Cloud Run — EXPOSE 8080 ONLY
+EXPOSE 8080
 
-# Health Check — GCP Compatible
+# Health Check — GCP Port 8080
 HEALTHCHECK --interval=30s --timeout=15s --start-period=90s --retries=10 --start-interval=5s \
-    CMD curl -fs http://127.0.0.1:80/health || exit 1
+    CMD curl -fs http://127.0.0.1:8080/health || exit 1
 
 # Entrypoint — Set SSH Password
 ENTRYPOINT ["/bin/sh", "-c", "\
